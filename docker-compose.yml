@@ -1,15 +1,16 @@
 version: '3'
 services:
   app:
-    container_name: docker-node-mongo
-    restart: always
     build: .
+    volumes:
+      - ./:/opt/node_app/app
     ports:
-      - '80:3000'
-    links:
-      - mongo
-  mongo:
-    container_name: mongo
+      - 3000:3000
+    # links:
+    #   - db
+    # environment: 
+    #   - DB_HOST=db
+    # command: npm start
+  db:
     image: mongo
-    ports:
-      - '27017:27017'
+ 
